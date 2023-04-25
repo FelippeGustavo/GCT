@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Carousel</title>
+</head>
+<body>
+<div class="logos">
+    <div class="logos-slide">
+        <img src="/logos/Sem Título-1.png" alt="">
+        <img src="/logos/DER-MG.png" alt="">
+        <img src="/logos/betim.png" alt="">
+        <img src="/logos/sete.png" alt="">
+        <img src="/logos/montes.png" alt="">
+        <img src="/logos/uberlandia.png" alt="">
+
+    </div>
+</div>
+
+<script>
+    var copy = document.querySelector(".logos-slide").cloneNode(true);
+    document.querySelector(".logos").appendChild(copy);
+  </script>
+</body>
+</html>

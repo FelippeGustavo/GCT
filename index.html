@@ -1,0 +1,358 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css">
+  <title>GCT- Gerenciamento e Controle de Trânsito</title>
+  <link rel="shortcut icon" href="img/traffic-light.ico">
+</head>
+<body>
+<style>
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(/img/logo-geral.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: opacity 0.65s, visibility 0.65s;
+    z-index: 999;
+  }
+  
+  .loader--hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .loader::after {
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #020322;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+  }
+  
+  @keyframes loading {
+    from {
+      transform: rotate(0turn);
+    }
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  
+</style>
+<div class="loader"></div>
+
+
+  <!-- BARRA DE MENU -->
+<!-- <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="#" class="flex items-center">
+        <img src="./img/GCTgrande.jpg" class="h-12 mr-3" alt="GCT Logo" />
+    </a>
+    <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+      <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Inicio</a>
+        </li>
+        <li>
+          <a href="#servicos" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Serviços</a>
+        </li>
+        <li>
+          <a href="#clientes" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Clientes</a>
+        </li>
+        <li>
+          <a href="#contato" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contato</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="bg-gray-800 border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="https://flowbite.com/" class="flex items-center">
+        <img src="/img/Logo-Branca - png.png" class="h-14 mr-3" alt="Flowbite Logo" />
+    </a>
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-800 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a href="#inicio" class="block py-2 pl-3 pr-4 text-lg text-white  bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Inicio</a>
+        </li>
+        <li>
+          <a href="#servicos" class="block py-2 pl-3 pr-4 text-lg text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-white md:dark:hover:bg-transparent">Serviços</a>
+        </li>
+        <li>
+          <a href="#clientes" class="block py-2 pl-3 pr-4 text-lg text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Clientes</a>
+        </li>
+        <li>
+          <a href="#contato" class="block py-2 pl-3 pr-4 text-lg text-white rounded hover:bg-gray-500 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contato</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- FIM BARRA DE MENU -->
+
+
+
+<!-- INICIO - SLIDES -->
+      <section class="bg-gray-900"id="inicio">
+  <div id="default-carousel" class="relative w-full" data-carousel="slide">
+  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+       
+      <div class="hidden duration-900 ease-in-out" data-carousel-item>
+          <img src="./img/paisagem-urbana-do-japao-com-transito.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+      <div>
+        <p>sok</p>
+      </div>
+      <div class="hidden duration-900 ease-in-out" data-carousel-item>
+          <img src="./img/japan-urban-landscape-with-traffic.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+      
+      <div class="hidden duration-900 ease-in-out" data-carousel-item>
+          <img src="./img/japan-urban-landscape-with-traffic.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+      
+      <div class="hidden duration-900 ease-in-out" data-carousel-item>
+          <img src="./img/japan-urban-landscape-with-traffic.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+     
+      <div class="hidden duration-900 ease-in-out" data-carousel-item>
+          <img src="./img/japan-urban-landscape-with-traffic.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+      </div>
+  </div>
+  <!-- INDICADORES DE SLIDE -->
+  <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+  </div>
+  <!-- CONTROLES -->
+  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+      <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+          <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          <span class="sr-only">Voltar</span>
+      </span>
+  </button>
+  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+      <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+          <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          <span class="sr-only">Avançar</span>
+      </span>
+  </button>
+</div>
+</div>            
+</div>
+
+</div>
+</section>
+<!--FIM INICIO-SLIDES  -->
+
+
+
+      <section  id="servicos" style= "background-image: url('/img/paisagem-urbana-do-japao-com-transito.jpg')" class="bg-cover"">
+        <h1 class="text-center font-sans pt-5 pb-5 text-3xl font-bold tracking-tight text-white mb-10">SERVIÇOS</h1>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-2 md:grid-cols-4 pb-10 ml-4 mr-4" >
+          
+          <div class="max-w-sm bg-gray-900 text-white border border-gray-800 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  ">
+     
+              <div class="p-0">
+         
+                  <h5 class="mb-2  md:p-0  text-2xl font-bold tracking-tight text-white dark:text-white text-center">Sinalização Vertical e Horizontal</h5>
+                </a>
+              </div>
+              <div class="">
+              <img class="rounded-t-lg" src="./img/Road sign-amico.svg" alt="" /></div>
+            </a>
+            <p class="m-3 ml-3 mr-3 mt-4 mb-3  md:ml-4  font-semibold tracking-tight text-gray-200 text-justify ps-10 bg-gray-950 dark:text-gray-400">O serviço de sinalização vertical e horizontal, são necessários e fundamentais para o perfeito funcionamento de todo sistema eletrônico de fiscalização de velocidade. </p>
+          </div>
+
+          <div class="max-w-sm  bg-gray-900 text-white border border-gray-800 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+         
+              <div class="p-1">
+             
+                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white text-center">LAP – Leitor Automático de Placas</h5>
+                </a> 
+              </div>
+              <img class="rounded-t-lg " src="./img/Road sign-amico.png" alt="" />
+            </a>
+            <p class="m-3 ml-3 mr-3 mt-10 mb-3 font-semibold tracking-tight text-gray-200 text-justify ps-10 bg-gray-950 dark:text-gray-400">O Sistema Identificador Automático de Placas é um software inteligente e integrado às câmeras dos medidores de velocidade e realiza a leitura das placas dos veículos em tempo real.</p>
+          </div>
+          <div class="max-w-sm bg-gray-900 text-white border border-gray-800 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white text-center">Avanço de Semáforo – Parada Sobre a Faixa</h5>
+              <img class="rounded-t-lg" src="./img/Pedestrian crossing-bro (1).svg" alt="" />
+            </a>
+            <div class="p-1">
+           
+
+              </a>
+                <p class="m-3 ml-3 mr-3 mt-4 mb-3 font-semibold tracking-tight text-gray-200 text-justify ps-10 bg-gray-950 dark:text-gray-400">É um equipamento que monitora o desrespeito de avanço ao sinal vermelho do semáforo, a parada sobre a faixa de pedestres e ainda o excesso de velocidade.</p>
+            </div>
+          </div>
+        
+        <div class="max-w-sm  bg-gray-900 text-white border border-gray-800 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+       
+          <h5 class="mb-2  text-2xl font-bold tracking-tight text-white dark:text-white text-center ml-2 mr-10">Sinalização Vertical e Horizontal</h5>
+            <img class="rounded-t-lg mb-10" src="./img/Car driving-rafiki.png" alt="" />
+          </a>
+          <div class="p-1">
+          
+            </a>
+            <p class="m-3 ml-3 mr-3 mt-5 mb-80 font-semibold tracking-tight text-gray-200 text-justify ps-10 bg-gray-950 dark:text-gray-400 ">É um equipamento que monitora o desrespeito de avanço ao sinal vermelho do semáforo, a parada sobre a faixa de pedestres e ainda o excesso de velocidade.</p>
+          </div>
+        </div>
+        <div class="max-w-sm  bg-gray-900 text-white border border-gray-800 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+       
+          <h5 class="mb-2  text-2xl font-bold tracking-tight text-white dark:text-white text-center ml-2 mr-10">Talonário Eletrônico</h5>
+            <img class="rounded-t-lg mb-10" src="./img/talonario.png" alt="" />
+          </a>
+          <div class="p-1">
+          
+            </a>
+            <p class="m-3 ml-3 mr-3 mt-5 mb-80 font-semibold tracking-tight text-gray-200 text-justify ps-10 bg-gray-950 dark:text-gray-400 ">É um equipamento que monitora o desrespeito de avanço ao sinal vermelho do semáforo, a parada sobre a faixa de pedestres e ainda o excesso de velocidade.</p>
+          </div>
+        </div>
+
+      </div>
+        </div>
+
+      </div>
+        </div>
+
+        
+        </section>
+
+<section id="clientes">
+  <h1 class="text-center font-sans text-3xl font-bold tracking-tight  bg-gray-800 w-full  p-100 p-2.5 text-white hover:text-gray-100">CLIENTES</h1>
+  <class class="p-15 m-10 mb-9 bg-black">
+  <object type="text/html" data="/carousel/index.html" style="width:100%; height:100%;"></object>
+</class>
+</section>
+
+
+
+      <section id=contato class="bg-gray-800 dark:bg-gray-900">
+
+        <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-white dark:text-white">CONTATO</h2>
+            <p class="mb-8 lg:mb-16 font-light text-center text-white dark:text-gray-500 sm:text-xl">Entre em contato conosco<br> Para conhecer nossas vagas<br>
+              <button type="button" class="py-2.5 px-5 mr-2 mb-2 mt-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"onclick="window.open('https://br.indeed.com/cmp/Gct---Ger%C3%AAnciamento-E-Controle-De-Tr%C3%A2nsito-1')">CLIQUE AQUI </button>
+            <form action="#" class="space-y-8">
+              <div>
+                <label for="text" class="block mb-2 text-sm font-medium text-white dark:text-gray-300">Nome e Sobrenome</label>
+                <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900  bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Insira seu nome completo" required>
+            </div>
+                <div>
+                  <label for="email" class="block mb-2 text-sm font-medium text-white dark:text-gray-300">Email</label>
+                  <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="nome@gct.com.br" required>
+              </div>
+       
+                <div>
+                    <label for="number" class="block mb-2 text-sm font-medium text-white dark:text-gray-300">Número</label>
+                    <input type="number" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="(99)99999-9999" required>
+                </div>
+                <div>
+                  <label for="text" class="block mb-2 text-sm font-medium text-white dark:text-gray-300">Assunto</label>
+                  <input type="text" id="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Digite o assunto:" required>
+              </div>
+                <div class="sm:col-span-2">
+                    <label for="message" class="block mb-2 text-sm font-medium text-white dark:text-gray-400">Mensagem</label>
+                    <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Descreva sua mensagem."></textarea>
+                </div>
+                <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Enviar Mensagem</button>
+              </form>
+        </div>
+      </section>
+
+
+
+<!-- footer -->
+
+
+<section>
+
+  <footer class="bg-gray-100">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+              <a href="https://flowbite.com/" class="flex items-center">
+                  <img src="/img/GCTgrande.jpg" class="h-20 mr-3 " alt="GCT - Gerenciamento e Controle de Transito SA" />
+                  <span class="pl-10 text-sm text-gray-500 sm:text-justify dark:text-gray-400" class="hover:underline">GCT-Gerenciamento e Controle de Trânsito <br>Rua Unai 190 Industrial<br>Contagem-Minas Gerais -32.220-350
+                    <br>Fone: (31) 2566-3232.<br> Todos os Direitos Reservados.
+                  </span>
+                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
+              </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">informações</h2>
+                  <ul class="text-gray-600 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                     
+                        
+                      </li>
+                      <li class="mb-4">
+                        <a href="http://chamados.gctnet.com.br/Paginas/Inicial"  _blank class="hover:underline">Sistema de Chamado</a>
+                    </li>
+                    <li class="mb-4">
+                      <a href="https://www.google.com.br/maps/place/GCT+-+Gerenciamento+e+Controle+de+Transito+SA/@-19.9657904,-44.0274657,17z/data=!3m1!4b1!4m6!3m5!1s0xa6967bcbb6533d:0xbc60e140903b3127!8m2!3d-19.9657955!4d-44.0248908!16s%2Fg%2F1v16rjsn"  _blank class="hover:underline">Como chegar a GCT</a>
+                  </li>
+                  </ul>
+              </div>
+
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      </div>
+    </div>
+</footer>
+
+</section>
+
+      
+
+  </div>
+</div>
+<script>
+  window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+  
+    loader.classList.add("loader--hidden");
+  
+    loader.addEventListener("transitionend", () => {
+      document.body.removeChild(loader);
+    });
+  });
+  
+      </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</body>
+
+</html>
