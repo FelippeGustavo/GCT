@@ -1,9 +1,34 @@
 [
-    {
+{
+"key":"PO",
+"name":"PROCESSAMENTO",
+"latitude":-19.940152425601653,
+"longitude":-44.03530185241443
+
+ },
+{
+ "key":"RL",
+"name":"REGIONAL",
+"latitude":-19.95187981332909, 
+"longitude":-44.072858157185706
+        
+},
+ {
+"key":"DR",
+"name":"DER",
+"latitude":-19.922303266135113,
+"longitude":-43.93073901357284              
+},
+{
 "key":"GT",
 "name":"GCT",
 "latitude":-19.965827780171512,
-"longitude":-44.02487429580799
-
-    }
+"longitude":-44.02487429580799              
+},
+{
+"key":"D2",
+"name":"DER2",
+"latitude":-19.921772545300236,
+"longitude":-43.92953474261294            
+}
 ]
